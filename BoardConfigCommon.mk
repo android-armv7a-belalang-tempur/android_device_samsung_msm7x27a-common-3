@@ -60,10 +60,6 @@ TARGET_FORCE_CPU_UPLOAD := true
 ## ION
 TARGET_USES_ION := true
 
-##Audio
-HAVE_HTC_AUDIO_DRIVER := true
-BOARD_USES_GENERIC_AUDIO := true
-
 ## Graphics, media
 USE_OPENGL_RENDERER := true
 TARGET_USES_QCOM_BSP := true
@@ -80,8 +76,6 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
 ## Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
-USE_BLUETOOTH_SAP := true
 
 ## Wi-Fi
 BOARD_WLAN_DEVICE := ath6kl
@@ -95,11 +89,14 @@ WIFI_EXT_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
 WIFI_DRIVER_MODULE_AP_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=1 recovery_enable=1"
 WIFI_DRIVER_MODULE_NAME := "ath6kl_sdio"
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl_sdio.ko"
-WIFI_DRIVER_MODULE_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=1 recovery_enable=1"
+WIFI_DRIVER_MODULE_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=0 recovery_enable=1"
 
 ## RIL
 BOARD_USES_LEGACY_RIL := true
+TARGET_PROVIDES_LIBRIL := true
+BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
 BOARD_RIL_CLASS := ../../../device/samsung/msm7x27a-common/ril/
+BOARD_USES_LIBSECRIL_STUB := true
 
 ## Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true

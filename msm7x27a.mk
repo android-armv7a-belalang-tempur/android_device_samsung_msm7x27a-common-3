@@ -29,7 +29,7 @@ PRODUCT_PACKAGES += \
 
 ## Misc.
 PRODUCT_PACKAGES += \
-    DeviceParts \
+    #DeviceParts \
     make_ext4fs \
     setup_fs \
     com.android.future.usb.accessory
