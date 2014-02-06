@@ -21,6 +21,7 @@ TARGET_NO_RADIOIMAGE := true
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_KERNEL_PAGESIZE := 4096
 TARGET_KERNEL_SOURCE := kernel/samsung/msm7x27a
+TARGET_PREBUILT_KERNEL := device/samsung/msm7x27a-common/kernel
 
 ## Platform
 TARGET_ARCH := arm
@@ -68,6 +69,9 @@ BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
 BOARD_EGL_CFG := device/samsung/msm7x27a-common/prebuilt/lib/egl/egl.cfg
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP	
 
+## Audio
+COMMON_GLOBAL_CFLAGS += -DNO_TUNNELED_SOURCE
+
 ## GPS
 BOARD_USES_QCOM_LIBRPC := true
 BOARD_USES_QCOM_GPS := true
@@ -89,14 +93,11 @@ WIFI_EXT_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
 WIFI_DRIVER_MODULE_AP_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=1 recovery_enable=1"
 WIFI_DRIVER_MODULE_NAME := "ath6kl_sdio"
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl_sdio.ko"
-WIFI_DRIVER_MODULE_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=0 recovery_enable=1"
+WIFI_DRIVER_MODULE_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=1 recovery_enable=1"
 
 ## RIL
-BOARD_USES_LEGACY_RIL := true
-TARGET_PROVIDES_LIBRIL := true
-BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
+BOARD_USES_LEGACY_RIL := false
 BOARD_RIL_CLASS := ../../../device/samsung/msm7x27a-common/ril/
-BOARD_USES_LIBSECRIL_STUB := true
 
 ## Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
@@ -117,6 +118,9 @@ BOARD_CHARGER_RES := device/samsung/msm7x27a-common/res/charger
 ## Use device specific modules
 TARGET_PROVIDES_LIBLIGHT := true
 TARGET_PROVIDES_LIBAUDIO := true
+
+## Override healthd HAL
+BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm7x27a
 
 ## Recovery
 TARGET_RECOVERY_INITRC := device/samsung/msm7x27a-common/recovery/init.rc
