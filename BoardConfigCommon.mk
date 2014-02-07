@@ -115,6 +115,9 @@ BOARD_LPM_BOOT_ARGUMENT_NAME := androidboot.boot_pause
 BOARD_LPM_BOOT_ARGUMENT_VALUE := batt
 BOARD_CHARGER_RES := device/samsung/msm7x27a-common/res/charger
 
+# Test for charger
+BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/msm7x27a-common/recovery/graphics.c
+
 ## Use device specific modules
 TARGET_PROVIDES_LIBLIGHT := true
 TARGET_PROVIDES_LIBAUDIO := true
