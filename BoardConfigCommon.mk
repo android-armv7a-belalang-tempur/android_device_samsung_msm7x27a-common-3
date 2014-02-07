@@ -96,8 +96,8 @@ WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl_sdio.ko"
 WIFI_DRIVER_MODULE_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=1 recovery_enable=1"
 
 ## RIL
-BOARD_USES_LEGACY_RIL := false
-BOARD_RIL_CLASS := ../../../device/samsung/msm7x27a-common/ril/
+BOARD_USES_LEGACY_RIL := true
+#BOARD_RIL_CLASS := ../../../device/samsung/msm7x27a-common/ril/
 
 ## Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
