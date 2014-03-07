@@ -559,4 +559,3 @@ int camera_get_camera_info(int camera_id, struct camera_info *info) {
 
     return 0;
 }
-

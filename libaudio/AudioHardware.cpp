@@ -1619,7 +1619,7 @@ status_t AudioHardware::setVoiceVolume(float v)
     }
 
     Mutex::Autolock lock(mLock);
-    set_volume_rpc(SND_DEVICE_CURRENT, SND_METHOD_VOICE, 7, m7xsnddriverfd);
+    set_volume_rpc(SND_DEVICE_CURRENT, SND_METHOD_VOICE, vol, m7xsnddriverfd);
     return NO_ERROR;
 }
 

@@ -441,4 +441,3 @@ void gr_fb_blank(bool blank)
     write(fd, blank ? "000" : "127", 3);
     close(fd);
 }
-
