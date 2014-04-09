@@ -15,6 +15,8 @@
 # BoardConfig.mk
 #
 
+USE_CAMERA_STUB := false
+
 ## Kernel, bootloader etc.
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
@@ -43,12 +45,19 @@ ARCH_ARM_HAVE_32_BYTE_CACHE_LINES := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_USE_SPARROW_BIONIC_OPTIMIZATION := true
 
+## Qualcomm hardware
+BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QCOM_LIBS := true
+BOARD_USES_QCOM_LIBRPC := true
+BOARD_USE_QCOM_LLVM_CLANG_RS := true
+CAMERA_USES_SURFACEFLINGER_CLIENT_STUB := true
+BOARD_USES_QCOM_LEGACY_CAM_PARAMS := true
+
 ## Camera
-BOARD_USES_LEGACY_OVERLAY := true
+BOARD_USES_PROPRIETARY_LIBCAMERA := true
 BOARD_NEEDS_MEMORYHEAPPMEM := true
-TARGET_DISABLE_ARM_PIE := true
-COMMON_GLOBAL_CFLAGS += -DBINDER_COMPAT
-COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_QCOM
+TARGET_DISABLE_ARM_PIE=true
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DSAMSUNG_CAMERA_LEGACY -DNEEDS_VECTORIMPL_SYMBOLS
 
 ## FM Radio
 BOARD_HAVE_QCOM_FM := true
@@ -64,13 +73,11 @@ TARGET_USES_ION := true
 ## Graphics, media
 USE_OPENGL_RENDERER := true
 TARGET_USES_QCOM_BSP := true
-BOARD_USES_QCOM_HARDWARE := true
 BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
 BOARD_EGL_CFG := device/samsung/msm7x27a-common/prebuilt/lib/egl/egl.cfg
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSPs
 
 ## GPS
-BOARD_USES_QCOM_LIBRPC := true
 BOARD_USES_QCOM_GPS := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm7x27a
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
@@ -87,13 +94,18 @@ BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_ath6kl
 WIFI_EXT_MODULE_NAME := "cfg80211"
 WIFI_EXT_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
-WIFI_DRIVER_MODULE_AP_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=1 recovery_enable=1"
+#WIFI_DRIVER_MODULE_AP_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=1 recovery_enable=1"
 WIFI_DRIVER_MODULE_NAME := "ath6kl_sdio"
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl_sdio.ko"
-WIFI_DRIVER_MODULE_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=1 recovery_enable=1"
+#WIFI_DRIVER_MODULE_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=1 recovery_enable=1"
+WIFI_TEST_INTERFACE := "sta"
+WIFI_DRIVER_FW_PATH_STA := "sta"
+WIFI_DRIVER_FW_PATH_AP := "ap"
+WIFI_DRIVER_FW_PATH_P2P := "p2p"
 
 ## RIL
-BOARD_USES_LEGACY_RIL := true
+BOARD_PROVIDES_LIBRIL := true
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm7x27a-common/include
 
 ## Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
@@ -110,9 +122,6 @@ TARGET_NO_INITLOGO := true
 BOARD_LPM_BOOT_ARGUMENT_NAME := androidboot.boot_pause
 BOARD_LPM_BOOT_ARGUMENT_VALUE := batt
 BOARD_CHARGER_RES := device/samsung/msm7x27a-common/res/charger
-
-# At least it makes charger to not blink
-BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/msm7x27a-common/recovery/graphics.c
 
 ## Use device specific modules
 TARGET_PROVIDES_LIBLIGHT := true

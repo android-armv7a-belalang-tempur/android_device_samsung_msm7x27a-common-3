@@ -1,0 +1,52 @@
+From a3833efb371ce64a5daef9e5b66f0d8a39fbc41d Mon Sep 17 00:00:00 2001
+From: TheWhisp <daavis.90@gmail.com>
+Date: Fri, 27 Dec 2013 15:06:32 +0200
+Subject: [PATCH 2/2] charger: change backlight before blanking the display
+
+Adapted by Giovanni Santini <giovannisantini93@yahoo.it>
+on date Sun, 2 Feb 2014 19:05:32 +0100
+
+Change-Id: I67f34610964a7213226e77d7250cf6cd964558ad
+---
+ charger/charger.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/charger/charger.c b/charger/charger.c
+index 325029b..fc1dbfa 100644
+--- a/charger/charger.c
++++ b/charger/charger.c
+@@ -756,8 +756,8 @@ static void update_screen_state(struct charger *charger, int64_t now)
+     if (batt_anim->cur_cycle == batt_anim->num_cycles) {
+         reset_animation(batt_anim);
+         charger->next_screen_transition = -1;
+-        gr_fb_blank(true);
+         set_backlight(false);
++        gr_fb_blank(true);
+         
+ #ifdef ALLOW_SUSPEND_IN_CHARGER
+         write_file(SYS_POWER_STATE, "mem", strlen("mem"));
+@@ -795,8 +795,8 @@ static void update_screen_state(struct charger *charger, int64_t now)
+     /* unblank the screen  on first cycle */
+     if (batt_anim->cur_cycle == 0)
+         {
+-        gr_fb_blank(false);
+         set_backlight(true);
++        gr_fb_blank(false);
+         }
+ 
+     /* draw the new frame (@ cur_frame) */
+@@ -1060,9 +1060,9 @@ int main(int argc, char **argv)
+ 
+     ev_sync_key_state(set_key_callback, charger);
+ 
+-    gr_fb_blank(true);
+     set_backlight(false);
+-
++    gr_fb_blank(true);
++    
+     charger->next_screen_transition = now - 1;
+     charger->next_key_check = -1;
+     charger->next_pwr_check = -1;
+-- 
+1.8.5.3
+

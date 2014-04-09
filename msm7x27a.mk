@@ -49,7 +49,6 @@ PRODUCT_PACKAGES += \
 
 ## Other HALs
 PRODUCT_PACKAGES += \
-    camera.msm7x27a \
     lights.msm7x27a \
     gps.msm7x27a \
     power.msm7x27a \
@@ -87,8 +86,8 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm7x27a-common/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml
 
 ## Camera
-PRODUCT_COPY_FILES += \
-    device/samsung/msm7x27a-common/libcamera/camera.msm7x27a.so:system/lib/hw/camera.msm7x27a.so
+#PRODUCT_COPY_FILES += \
+#    device/samsung/msm7x27a-common/libcamera/camera.msm7x27a.so:system/lib/hw/camera.msm7x27a.so
 
 ## Rootdir
 PRODUCT_COPY_FILES += \
@@ -107,7 +106,9 @@ PRODUCT_COPY_FILES += \
 ## Bluetooth
 PRODUCT_COPY_FILES += \
     device/samsung/msm7x27a-common/prebuilt/etc/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-    system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
+    system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf \
+    device/samsung/msm7x27a-common/prebuilt/etc/init.ath3k.bt.sh:/system/etc/init.ath3k.bt.sh \
+    device/samsung/msm7x27a-common/prebuilt/etc/init.qcom.coex.sh:/system/etc/init.qcom.coex.sh \
 
 ## FM
 PRODUCT_COPY_FILES += \
@@ -116,11 +117,17 @@ PRODUCT_COPY_FILES += \
 ## Network
 PRODUCT_COPY_FILES += \
     device/samsung/msm7x27a-common/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/samsung/msm7x27a-common/prebuilt/bin/get_macaddrs:system/bin/get_macaddrs
+    device/samsung/msm7x27a-common/prebuilt/bin/get_macaddrs:system/bin/get_macaddrs \
+    device/samsung/msm7x27a-common/prebuilt/etc/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
+    device/samsung/msm7x27a-common/prebuilt/etc/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh
 
 ## Vold config
 PRODUCT_COPY_FILES += \
     device/samsung/msm7x27a-common/prebuilt/etc/vold.fstab:system/etc/vold.fstab
+
+## Efs
+PRODUCT_COPY_FILES += \
+    device/samsung/msm7x27a-common/prebuilt/etc/init.qcom.efs.sync.sh:/system/etc/init.qcom.efs.sync.sh
 
 ## Audio
 PRODUCT_COPY_FILES += \
@@ -153,6 +160,9 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm7x27a-common/prebuilt/usr/idc/sec_touchscreen.idc:system/usr/idc/sec_touchscreen.idc
 
 ## Other
+PRODUCT_COPY_FILES += \
+    device/samsung/msm7x27a-common/prebuilt/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+    device/samsung/msm7x27a-common/prebuilt/etc/init.qcom.post_fs.sh:system/etc/init.qcom.post_fs.sh
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=2
 PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_AAPT_CONFIG := normal mdpi hdpi

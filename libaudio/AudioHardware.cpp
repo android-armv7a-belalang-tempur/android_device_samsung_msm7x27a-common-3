@@ -123,7 +123,7 @@ static int snd_device = -1;
 
 static uint32_t SND_DEVICE_CURRENT=-1;
 static uint32_t SND_DEVICE_HANDSET=-1;
-static uint32_t SND_DEVICE_SPEAKER=-1;
+static uint32_t SND_DEVICE_SPEAKER=6;
 static uint32_t SND_DEVICE_BT=-1;
 static uint32_t SND_DEVICE_BT_EC_OFF=-1;
 static uint32_t SND_DEVICE_HEADSET=-1;
