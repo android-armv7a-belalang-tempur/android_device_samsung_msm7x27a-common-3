@@ -270,8 +270,8 @@ status_t AudioHardware::initCheck()
     return mInit ? NO_ERROR : NO_INIT;
 }
 
-AudioStreamOut* AudioHardware::openOutputStream(
-        uint32_t devices, int *format, uint32_t *channels, uint32_t *sampleRate, status_t *status)
+AudioStreamOut* AudioHardware::openOutputStream(uint32_t devices, audio_output_flags_t flags, int *format, uint32_t *channels,
+        uint32_t *sampleRate, status_t *status)
 {
     { // scope for the lock
         Mutex::Autolock lock(mLock);
@@ -1535,19 +1535,20 @@ status_t AudioHardware::doAudioRouteOrMute(uint32_t device)
     rc = do_route_audio_rpc(device,
                               nEarmute , mMicMute, m7xsnddriverfd);
 #ifdef QCOM_FM_ENABLED
+//TODO - Something with these switch_mode idk what to do~mamutos
     if ((
         (device == SND_DEVICE_FM_DIGITAL_STEREO_HEADSET) ||
         (device == SND_DEVICE_FM_DIGITAL_SPEAKER_PHONE)  ||
         (device == SND_DEVICE_FM_DIGITAL_BT_A2DP_HEADSET)) &&
         (device != mCurSndDevice)) {
         ALOGV("doAudioRouteOrMute():switch to FM mode");
-        switch_mode(MODE_FM);
+        //switch_mode(MODE_FM);
     } else if (((mCurSndDevice == SND_DEVICE_FM_DIGITAL_STEREO_HEADSET) ||
         (mCurSndDevice == SND_DEVICE_FM_DIGITAL_SPEAKER_PHONE)  ||
         (mCurSndDevice == SND_DEVICE_FM_DIGITAL_BT_A2DP_HEADSET)) &&
         (device != mCurSndDevice)) {
         ALOGV("doAudioRouteOrMute():switch to AUX PCM mode");
-        switch_mode(MODE_BTSCO);
+        //switch_mode(MODE_BTSCO);
     }
 #endif
     return rc;

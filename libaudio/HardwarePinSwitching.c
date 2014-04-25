@@ -208,14 +208,14 @@ err_all:
 }
 
 /*==============================================================
-FUNCTION:  switch_mode
+FUNCTION: switch_mode
 ==============================================================*/
 /**
 * This function provides interface to change the mode of operation
 * from I2S mode to AUX PCM or vice versa. This function programs the
 * wcn2243 registers to TRISTATE or ON mode.
 *
-* @return  int - negative number on failure.
+* @return int - negative number on failure.
 *
 */
 extern int switch_mode( int nMode ) {

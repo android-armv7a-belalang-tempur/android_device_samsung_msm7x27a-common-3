@@ -202,6 +202,7 @@ public:
     // create I/O streams
     virtual AudioStreamOut* openOutputStream(
                                 uint32_t devices,
+                                audio_output_flags_t flags,
                                 int *format=0,
                                 uint32_t *channels=0,
                                 uint32_t *sampleRate=0,
@@ -259,8 +260,8 @@ private:
     class AudioStreamOutMSM72xx : public AudioStreamOut {
     public:
                             AudioStreamOutMSM72xx();
-        virtual             ~AudioStreamOutMSM72xx();
-                status_t    set(AudioHardware* mHardware,
+        virtual ~AudioStreamOutMSM72xx();
+                status_t set(AudioHardware* mHardware,
                                 uint32_t devices,
                                 int *pFormat,
                                 uint32_t *pChannels,
@@ -293,8 +294,8 @@ private:
     class AudioStreamOutDirect : public AudioStreamOut {
     public:
                             AudioStreamOutDirect();
-        virtual             ~AudioStreamOutDirect();
-                status_t    set(AudioHardware* mHardware,
+        virtual ~AudioStreamOutDirect();
+                status_t set(AudioHardware* mHardware,
                                 uint32_t devices,
                                 int *pFormat,
                                 uint32_t *pChannels,
