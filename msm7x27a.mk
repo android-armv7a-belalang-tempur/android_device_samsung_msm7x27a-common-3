@@ -28,8 +28,8 @@ PRODUCT_PACKAGES += \
     libtilerenderer
 
 ## Camera
-#PRODUCT_PACKAGES += \
-#    camera.msm7x27a
+PRODUCT_PACKAGES += \
+    camera.msm7x27a
 
 ## Misc.
 PRODUCT_PACKAGES += \
