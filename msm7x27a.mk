@@ -27,10 +27,6 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm7x27a \
     libtilerenderer
 
-## Camera
-PRODUCT_PACKAGES += \
-    camera.msm7x27a
-
 ## Misc.
 PRODUCT_PACKAGES += \
     make_ext4fs \
